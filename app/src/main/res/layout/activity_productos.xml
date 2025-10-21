@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="0dp">
+
+    <!-- Header modificado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@android:color/white"
+        android:elevation="4dp">
+
+        <!-- Botón volver -->
+        <ImageView
+            android:id="@+id/iconoVolver"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/back"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Volver" />
+
+        <!-- Título de la categoría -->
+        <TextView
+            android:id="@+id/tituloCategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Categoría"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#0C3F66" />
+
+        <!-- Contenedor para iconos -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iconoBuscar"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/lupa"
+                android:scaleType="fitCenter"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Buscar" />
+
+            <ImageView
+                android:id="@+id/iconoMenu"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/menu"
+                android:scaleType="fitCenter"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Cambiar vista" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- El resto del layout se mantiene igual -->
+    <LinearLayout
+        android:id="@+id/layoutBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/editTextBuscar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Buscar..."
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:imeOptions="actionSearch"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnCancelarBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:layout_marginStart="8dp"
+            android:padding="12dp"
+            android:background="#0C3F66"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginTop="16dp"
+        android:visibility="visible" />
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginTop="16dp"
+        android:numColumns="2"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:background="#F8F9FA"
+        android:paddingHorizontal="17dp"
+        android:elevation="8dp">
+
+        <!-- Home -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_casa_96"
+                app:tint="#0C3F66" />
+
+        </LinearLayout>
+
+        <!-- Search -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/lupa"
+                app:tint="#666666" />
+
+        </LinearLayout>
+
+        <!-- Like -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_me_gusta_96"
+                app:tint="#666666" />
+
+        </LinearLayout>
+
+        <!-- Notifications -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_recordatorios_de_citas_96"
+                app:tint="#666666" />
+
+        </LinearLayout>
+
+        <!-- Predicts -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_usuario_96"
+                app:tint="#666666" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

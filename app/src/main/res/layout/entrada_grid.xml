@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="220dp"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@android:color/white"
+    android:layout_margin="4dp"
+    android:elevation="2dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/imagen_grid"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/texto_titulo_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/texto_datos_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_marginTop="2dp" />
+
+    <RadioButton
+        android:id="@+id/boton_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="9dp"/>
+
+</LinearLayout>

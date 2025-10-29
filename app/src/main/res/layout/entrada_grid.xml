@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="160dp"
-    android:layout_height="220dp"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@android:color/white"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="165dp"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:elevation="2dp"
-    android:gravity="center">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/imagen_grid"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/texto_titulo_grid"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:maxLines="2"
-        android:ellipsize="end" />
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/texto_datos_grid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Precio"
-        android:textSize="12sp"
-        android:gravity="center"
-        android:layout_marginTop="2dp" />
+        <!-- Imagen del producto más alta -->
+        <ImageView
+            android:id="@+id/imagen_grid"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            android:background="@drawable/image_grid_bg"
+            android:clipToOutline="true" />
 
-    <RadioButton
-        android:id="@+id/boton_grid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="9dp"/>
+        <!-- Contenedor de texto con más espacio -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:gravity="center_horizontal">
 
-</LinearLayout>
+            <!-- Nombre del producto -->
+            <TextView
+                android:id="@+id/texto_titulo_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hoodie Supreme BoxLogo"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Precio -->
+            <TextView
+                android:id="@+id/texto_datos_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="355€"
+                android:textColor="#616161"
+                android:textSize="12sp"
+                android:layout_marginTop="6dp"
+                android:gravity="center" />
+
+            <!-- Espacio adicional para futuros elementos -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

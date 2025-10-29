@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="#1E1E1E"
         android:elevation="4dp">
 
         <!-- Botón volver -->
@@ -23,8 +23,10 @@
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:src="@drawable/back"
+            app:tint="#8A16C1"
             android:scaleType="fitCenter"
             android:padding="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="Volver" />
 
@@ -38,13 +40,15 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="#0C3F66" />
+            android:layout_marginTop="5dp"
+            android:textColor="#8A16C1" />
 
         <!-- Contenedor para iconos -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -53,6 +57,7 @@
                 android:layout_height="42dp"
                 android:src="@drawable/lupa"
                 android:scaleType="fitCenter"
+                app:tint="#8A16C1"
                 android:padding="10dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="Buscar" />
@@ -63,6 +68,7 @@
                 android:layout_height="42dp"
                 android:src="@drawable/menu"
                 android:scaleType="fitCenter"
+                app:tint="#8A16C1"
                 android:padding="10dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="Cambiar vista" />
@@ -78,7 +84,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="12dp"
-        android:background="@android:color/white"
+        android:background="#121212"
         android:elevation="2dp"
         android:visibility="gone">
 
@@ -109,28 +115,35 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:background="#1E1E1E"
+        android:padding="8dp"
+        android:clipToPadding="false"
         android:visibility="visible" />
 
+    <!-- GridView ajustado para CardView -->
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:numColumns="2"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
+        android:verticalSpacing="12dp"
+        android:horizontalSpacing="12dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
+        android:background="#1E1E1E"
+        android:padding="8dp"
+        android:clipToPadding="false"
         android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
-        android:background="#F8F9FA"
+        android:background="#1E1E1E"
         android:paddingHorizontal="17dp"
         android:elevation="8dp">
 
@@ -148,7 +161,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_casa_96"
-                app:tint="#0C3F66" />
+                app:tint="#8A16C1" />
 
         </LinearLayout>
 
@@ -166,7 +179,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/lupa"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -184,7 +197,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_me_gusta_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -202,7 +215,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_recordatorios_de_citas_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -220,7 +233,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_usuario_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 

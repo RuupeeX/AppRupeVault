@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="0dp">
+
+    <!-- ScrollView para el contenido desplazable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomActionBar"
+        android:padding="0dp"
+        android:background="#121212">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#121212">
+
+            <!-- Header integrado con la imagen (blanco) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/white">
+
+                <!-- Imagen del producto -->
+                <ImageView
+                    android:id="@+id/imagenDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/white"
+                    android:src="@mipmap/ic_launcher" />
+
+                <!-- Botón volver superpuesto -->
+                <ImageView
+                    android:id="@+id/iconoVolver"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/back"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:padding="8dp"
+                    app:tint="#8A16C1"
+                    android:contentDescription="Volver" />
+
+            </RelativeLayout>
+
+            <!-- Información del producto (tema oscuro) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="27dp"
+                android:background="#121212">
+
+                <!-- Título del producto -->
+                <TextView
+                    android:id="@+id/tituloDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jordan 1 Retro High"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <!-- Precio -->
+                <TextView
+                    android:id="@+id/precioDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1000€"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#8A16C1"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Selector de talla -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Talla"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerTallas"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/spinner_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textSize="15sp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="#2D2D2D" />
+
+                <!-- Descripción -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/descripcionDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Las Jordan 1 Retro High son un icono del baloncesto y la cultura urbana. Diseño clásico con cuero premium y amortiguación Air-Sole."
+                    android:textSize="14sp"
+                    android:textColor="#B3B3B3"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Barra de acciones fija MÁS ARRIBA -->
+    <LinearLayout
+        android:id="@+id/bottomActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        android:background="#121212"
+        android:elevation="16dp"
+        android:paddingStart="27dp"
+        android:paddingEnd="27dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <!-- Botón favorito -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFavorito"
+            android:layout_width="56dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="12dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="#2D2D2D"
+            android:textColor="#8A16C1"
+            android:elevation="4dp"
+            app:cornerRadius="10dp"
+            app:strokeColor="#8A16C1"
+            app:strokeWidth="2dp"
+            app:icon="@drawable/icons8_me_gusta_96"
+            app:iconTint="#8A16C1"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
+
+        <!-- Botón añadir al carrito -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnComprar"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="AÑADIR A LA CESTA"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#8A16C1"
+            android:textColor="@color/white"
+            android:elevation="8dp"
+            app:cornerRadius="10dp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            app:strokeColor="#6A1195"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

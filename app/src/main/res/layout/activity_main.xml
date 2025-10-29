@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="#121212">
 
     <!-- Header -->
     <LinearLayout
@@ -13,15 +13,16 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="#121212"
         android:elevation="4dp">
 
         <ImageView
             android:id="@+id/logoApp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/rupelogo"
             android:scaleType="fitCenter"
+            android:layout_marginTop="7dp"
             android:layout_marginStart="8dp" />
 
         <TextView
@@ -29,10 +30,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="RUPEVAULT"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
             android:gravity="end"
-            android:textColor="#0C3F66" />
+            android:layout_marginTop="7dp"
+            android:textColor="#8A16C1"/>
 
     </LinearLayout>
 
@@ -43,37 +46,42 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:numColumns="1"
-        android:background="@color/white"
+        android:background="#1E1E1E"
         android:verticalSpacing="16dp"
         android:horizontalSpacing="16dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:padding="0dp" />
 
-    <!-- Barra inferior estética -->
+    <!-- Barra inferior mejorada -->
     <LinearLayout
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
-        android:background="#F8F9FA"
+        android:background="#121212"
         android:paddingHorizontal="17dp"
         android:elevation="8dp">
 
-        <!-- Home -->
+        <!-- Home Button -->
         <LinearLayout
+            android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_casa_96"
-                app:tint="#0C3F66" />
+                app:tint="#8A16C1" />
 
         </LinearLayout>
 
@@ -91,7 +99,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/lupa"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -109,7 +117,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_me_gusta_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -127,25 +135,29 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_recordatorios_de_citas_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 
-        <!-- Predicts -->
+        <!-- User Button -->
         <LinearLayout
+            android:id="@+id/userButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icons8_usuario_96"
-                app:tint="#666666" />
+                app:tint="@color/white" />
 
         </LinearLayout>
 

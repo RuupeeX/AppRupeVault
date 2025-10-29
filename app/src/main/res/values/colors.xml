@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_azul_logo">#FF0C3F66</color>
     <color name="color_azul_logo_light">#FF1A5A8C</color>
+    <color name="selected_talla">#0C3F66</color>
+    <color name="default_talla">#F0F0F0</color>
+    <color name="primaryColor">#1A73E8</color>
+
 </resources>

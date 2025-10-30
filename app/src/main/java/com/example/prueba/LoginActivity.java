@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     private TextInputEditText etEmailLogin, etPasswordLogin;
-    private MaterialButton btnLogin;
+    private MaterialButton btnLogin, btnGuest;
     private TextView tvRegisterLink;
 
     // Lista para almacenar usuarios
@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmailLogin = findViewById(R.id.etEmailLogin);
         etPasswordLogin = findViewById(R.id.etPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
+        btnGuest = findViewById(R.id.btnGuest); // Nuevo botón
         tvRegisterLink = findViewById(R.id.tvRegisterLink);
 
         // Agregar algunos usuarios de prueba (solo si está vacía)
@@ -41,6 +42,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginUsuario();
+            }
+        });
+
+        // Click en botón Invitado
+        btnGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarComoInvitado();
             }
         });
 
@@ -83,11 +92,23 @@ public class LoginActivity extends AppCompatActivity {
             // Ir a MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("usuario", usuarioEncontrado.getNombre());
+            intent.putExtra("esInvitado", false); // No es invitado
             startActivity(intent);
             finish(); // Cerrar LoginActivity para que no pueda volver atrás
         } else {
             Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void iniciarComoInvitado() {
+        // Iniciar como usuario invitado
+        Toast.makeText(this, "Continuing as guest", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra("usuario", "Guest");
+        intent.putExtra("esInvitado", true); // Es invitado
+        startActivity(intent);
+        finish(); // Cerrar LoginActivity
     }
 
     private void irARegister() {

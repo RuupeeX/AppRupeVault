@@ -64,8 +64,8 @@ public class DetalleProductoActivity extends AppCompatActivity {
         findViewById(R.id.btnComprar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tallaSeleccionada == null || tallaSeleccionada.equals("Seleccionar talla")) {
-                    Toast.makeText(DetalleProductoActivity.this, "Por favor, selecciona una talla", Toast.LENGTH_SHORT).show();
+                if (tallaSeleccionada == null || tallaSeleccionada.equals("Select size")) {
+                    Toast.makeText(DetalleProductoActivity.this, "Please select a size", Toast.LENGTH_SHORT).show();
                 } else {
                     // Añadir al carrito
                     agregarAlCarrito();
@@ -80,17 +80,17 @@ public class DetalleProductoActivity extends AppCompatActivity {
 
         if ("SNEAKERS".equals(categoriaProducto)) {
             // Tallas de zapatillas (numéricas)
-            tallas = new String[]{"Seleccionar talla", "36", "36.5", "37", "37.5", "38", "38.5",
+            tallas = new String[]{"Select size", "36", "36.5", "37", "37.5", "38", "38.5",
                     "39", "40", "40.5", "41", "42", "42.5", "43", "44", "45"};
-            hintText = "Seleccionar talla (EU)";
+            hintText = "Select size (EU)";
         } else if ("CLOTHES".equals(categoriaProducto)) {
             // Tallas de ropa
-            tallas = new String[]{"Seleccionar talla", "XS", "S", "M", "L", "XL", "XXL", "XXXL"};
-            hintText = "Seleccionar talla";
+            tallas = new String[]{"Select size", "XS", "S", "M", "L", "XL", "XXL", "XXXL"};
+            hintText = "Select size";
         } else {
             // Para accesorios u otros productos
-            tallas = new String[]{"Seleccionar talla", "Única"};
-            hintText = "Seleccionar opción";
+            tallas = new String[]{"Select size", "Unic"};
+            hintText = "Select an option";
         }
 
         // Crear adaptador personalizado
@@ -112,9 +112,9 @@ public class DetalleProductoActivity extends AppCompatActivity {
 
                 if (position == 0) {
                     textView.setTextColor(Color.GRAY);
-                    textView.setBackgroundColor(Color.parseColor("#F5F5F5"));
+                    textView.setBackgroundColor(Color.parseColor("#1E1E1E"));
                 } else {
-                    textView.setTextColor(Color.parseColor("#0C3F66"));
+                    textView.setTextColor(Color.parseColor("#8A16C1"));
                     textView.setBackgroundColor(Color.WHITE);
                 }
 
@@ -129,7 +129,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
                 if (position == 0) {
                     textView.setTextColor(Color.GRAY);
                 } else {
-                    textView.setTextColor(Color.parseColor("#0C3F66"));
+                    textView.setTextColor(Color.parseColor("#8A16C1"));
                 }
 
                 return view;
@@ -146,12 +146,12 @@ public class DetalleProductoActivity extends AppCompatActivity {
                 if (position > 0) {
                     tallaSeleccionada = tallas[position];
                     if (view != null) {
-                        ((TextView) view).setTextColor(Color.parseColor("#0C3F66"));
+                        ((TextView) view).setTextColor(Color.parseColor("#8A16C1"));
                     }
 
                     // Mostrar talla seleccionada (opcional)
                     Toast.makeText(DetalleProductoActivity.this,
-                            "Talla seleccionada: " + tallaSeleccionada,
+                            "Size selected: " + tallaSeleccionada,
                             Toast.LENGTH_SHORT).show();
                 } else {
                     tallaSeleccionada = null;
@@ -166,13 +166,13 @@ public class DetalleProductoActivity extends AppCompatActivity {
     }
 
     private void agregarAlCarrito() {
-        if (tallaSeleccionada == null || tallaSeleccionada.equals("Seleccionar talla")) {
-            Toast.makeText(DetalleProductoActivity.this, "Por favor, selecciona una talla", Toast.LENGTH_SHORT).show();
+        if (tallaSeleccionada == null || tallaSeleccionada.equals("Select size")) {
+            Toast.makeText(DetalleProductoActivity.this, "Please select a size", Toast.LENGTH_SHORT).show();
         } else {
             String nombreProducto = tituloDetalle.getText().toString();
             String precio = precioDetalle.getText().toString();
 
-            String mensaje = nombreProducto + " - Talla: " + tallaSeleccionada + " añadido al carrito";
+            String mensaje = nombreProducto + " - Size: " + tallaSeleccionada + " added to cart";
             Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
         }
     }

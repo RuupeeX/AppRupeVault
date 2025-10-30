@@ -139,6 +139,7 @@
         android:clipToPadding="false"
         android:visibility="gone" />
 
+    <!-- BARRA INFERIOR CON TODOS LOS IDs AÑADIDOS -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -149,13 +150,17 @@
 
         <!-- Home -->
         <LinearLayout
+            android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -167,13 +172,17 @@
 
         <!-- Search -->
         <LinearLayout
+            android:id="@+id/searchButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -185,13 +194,17 @@
 
         <!-- Like -->
         <LinearLayout
+            android:id="@+id/likeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -203,13 +216,17 @@
 
         <!-- Notifications -->
         <LinearLayout
+            android:id="@+id/notificationsButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -219,15 +236,19 @@
 
         </LinearLayout>
 
-        <!-- Predicts -->
+        <!-- User -->
         <LinearLayout
+            android:id="@+id/userButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"

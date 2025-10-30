@@ -6,20 +6,31 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private GridView gridCategorias;
+    private LinearLayout homeButton, userButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Inicializar componentes
         gridCategorias = findViewById(R.id.gridCategorias);
+        homeButton = findViewById(R.id.homeButton);
+        userButton = findViewById(R.id.userButton);
+
+        setupBottomNavigation();
 
         // Datos para las categorías con descripciones
         ArrayList<Categoria> categorias = new ArrayList<>();
@@ -55,5 +66,119 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setupBottomNavigation() {
+        // Home Button - Ya estamos en home, puede servir para recargar
+        LinearLayout homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            refreshHome();
+        });
+
+        // Search Button (segundo botón)
+        LinearLayout searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(v -> {
+            showSearchFunctionality();
+        });
+
+        // Like Button (tercer botón)
+        LinearLayout likeButton = findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(v -> {
+            showFavorites();
+        });
+
+        // Notifications Button (cuarto botón)
+        LinearLayout notificationsButton = findViewById(R.id.notificationsButton);
+        notificationsButton.setOnClickListener(v -> {
+            showNotifications();
+        });
+
+        // User Button (quinto botón)
+        LinearLayout userButton = findViewById(R.id.userButton);
+        userButton.setOnClickListener(v -> {
+            navigateToUserProfile();
+        });
+
+        // Resaltar el botón de home al iniciar
+        highlightActiveButton(R.id.homeButton);
+    }
+
+    private void refreshHome() {
+        // Recargar las categorías o datos principales
+        Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show();
+
+        // Si quieres recargar datos:
+        // setupCategories();
+    }
+
+    private void showSearchFunctionality() {
+        Toast.makeText(this, "Búsqueda", Toast.LENGTH_SHORT).show();
+
+        // Puedes implementar:
+        // - Un diálogo de búsqueda
+        // - Navegar a una pantalla de búsqueda
+        // - Expandir una barra de búsqueda en el header
+    }
+
+    private void showFavorites() {
+        Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show();
+
+        // Navegar a pantalla de favoritos o mostrar diálogo
+        // Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
+        // startActivity(intent);
+    }
+
+    private void showNotifications() {
+        Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
+
+        // Navegar a pantalla de notificaciones o mostrar diálogo
+        // Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+        // startActivity(intent);
+    }
+
+    private void navigateToUserProfile() {
+        Toast.makeText(this, "Perfil de usuario", Toast.LENGTH_SHORT).show();
+
+        // Si tienes una Activity de perfil:
+        // Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+        // startActivity(intent);
+    }
+
+    // Método para resaltar el botón activo
+    private void highlightActiveButton(int activeButtonId) {
+        int[] buttonIds = {
+                R.id.homeButton,
+                findViewById(R.id.searchButton) != null ? R.id.searchButton : -1,
+                findViewById(R.id.likeButton) != null ? R.id.likeButton : -1,
+                findViewById(R.id.notificationsButton) != null ? R.id.notificationsButton : -1,
+                R.id.userButton
+        };
+
+        for (int id : buttonIds) {
+            if (id == -1) continue;
+
+            LinearLayout button = findViewById(id);
+            if (button != null) {
+                // Buscar el ImageView dentro del LinearLayout
+                ImageView icon = null;
+                for (int i = 0; i < button.getChildCount(); i++) {
+                    View child = button.getChildAt(i);
+                    if (child instanceof ImageView) {
+                        icon = (ImageView) child;
+                        break;
+                    }
+                }
+
+                if (icon != null) {
+                    if (id == activeButtonId) {
+                        // Botón activo - color púrpura
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_purple));
+                    } else {
+                        // Botones inactivos - color blanco
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
+                    }
+                }
+            }
+        }
     }
 }

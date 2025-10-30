@@ -12,9 +12,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 
 public class ProductosActivity extends AppCompatActivity {
@@ -25,7 +26,6 @@ public class ProductosActivity extends AppCompatActivity {
     private LinearLayout layoutBuscar;
     private EditText editTextBuscar;
     private Button btnCancelarBuscar;
-    private RadioButton radioButton_pulsado;
     private ArrayList<items> datos;
     private ArrayList<items> datosOriginales;
     private boolean isGridView = false;
@@ -55,7 +55,10 @@ public class ProductosActivity extends AppCompatActivity {
         TextView tituloCategoria = findViewById(R.id.tituloCategoria);
         tituloCategoria.setText(categoriaActual);
 
-        // Configurar listeners
+        // Configurar la barra de navegación inferior
+        setupBottomNavigation();
+
+        // Configurar listeners existentes
         iconoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +115,106 @@ public class ProductosActivity extends AppCompatActivity {
         }
     }
 
+    private void setupBottomNavigation() {
+        // Home Button - Volver al MainActivity
+        LinearLayout homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            navigateToHome();
+        });
+
+        // Search Button - Activar búsqueda en esta pantalla
+        LinearLayout searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(v -> {
+            // Activar la funcionalidad de búsqueda existente
+            if (!isSearching) {
+                toggleSearch();
+            }
+        });
+
+        // Like Button - Favoritos
+        LinearLayout likeButton = findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(v -> {
+            showFavorites();
+        });
+
+        // Notifications Button - Notificaciones
+        LinearLayout notificationsButton = findViewById(R.id.notificationsButton);
+        notificationsButton.setOnClickListener(v -> {
+            showNotifications();
+        });
+
+        // User Button - Perfil de usuario
+        LinearLayout userButton = findViewById(R.id.userButton);
+        userButton.setOnClickListener(v -> {
+            navigateToUserProfile();
+        });
+
+        // Resaltar el botón activo (ninguno en productos, o puedes resaltar search)
+        highlightActiveButton(-1); // -1 para no resaltar ninguno específico
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(ProductosActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    private void showFavorites() {
+        Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProductosActivity.this, FavoritesActivity.class);
+        // startActivity(intent);
+    }
+
+    private void showNotifications() {
+        Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProductosActivity.this, NotificationsActivity.class);
+        // startActivity(intent);
+    }
+
+    private void navigateToUserProfile() {
+        Toast.makeText(this, "Perfil de usuario", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProductosActivity.this, UserProfileActivity.class);
+        // startActivity(intent);
+    }
+
+    // Método para resaltar el botón activo
+    private void highlightActiveButton(int activeButtonId) {
+        int[] buttonIds = {
+                R.id.homeButton,
+                R.id.searchButton,
+                R.id.likeButton,
+                R.id.notificationsButton,
+                R.id.userButton
+        };
+
+        for (int id : buttonIds) {
+            LinearLayout button = findViewById(id);
+            if (button != null) {
+                // Buscar el ImageView dentro del LinearLayout
+                ImageView icon = null;
+                for (int i = 0; i < button.getChildCount(); i++) {
+                    View child = button.getChildAt(i);
+                    if (child instanceof ImageView) {
+                        icon = (ImageView) child;
+                        break;
+                    }
+                }
+
+                if (icon != null) {
+                    if (id == activeButtonId) {
+                        // Botón activo - color púrpura
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_purple));
+                    } else {
+                        // Botones inactivos - color blanco
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
+                    }
+                }
+            }
+        }
+    }
+
+    // Tus métodos existentes se mantienen igual...
     private void initializeData() {
         datos = new ArrayList<items>();
 
@@ -162,13 +265,18 @@ public class ProductosActivity extends AppCompatActivity {
         // Guardar copia de los datos originales
         datosOriginales = new ArrayList<>(datos);
     }
+
     private void toggleSearch() {
         isSearching = !isSearching;
         if (isSearching) {
             layoutBuscar.setVisibility(View.VISIBLE);
             editTextBuscar.requestFocus();
+            // Resaltar el botón de búsqueda cuando está activo
+            highlightActiveButton(R.id.searchButton);
         } else {
             cancelSearch();
+            // Quitar resaltado cuando se cancela la búsqueda
+            highlightActiveButton(-1);
         }
     }
 
@@ -284,4 +392,3 @@ public class ProductosActivity extends AppCompatActivity {
         });
     }
 }
-

@@ -173,9 +173,8 @@ public class ProductosActivity extends AppCompatActivity {
     }
 
     private void navigateToUserProfile() {
-        Toast.makeText(this, "Perfil de usuario", Toast.LENGTH_SHORT).show();
-        // Intent intent = new Intent(ProductosActivity.this, UserProfileActivity.class);
-        // startActivity(intent);
+        Intent intent = new Intent(ProductosActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     // Método para resaltar el botón activo

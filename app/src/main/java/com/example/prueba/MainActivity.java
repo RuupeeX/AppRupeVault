@@ -137,11 +137,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateToUserProfile() {
-        Toast.makeText(this, "Perfil de usuario", Toast.LENGTH_SHORT).show();
-
-        // Si tienes una Activity de perfil:
-        // Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
-        // startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     // Método para resaltar el botón activo

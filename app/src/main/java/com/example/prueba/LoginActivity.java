@@ -1,6 +1,7 @@
 package com.example.prueba;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,16 +20,22 @@ public class LoginActivity extends AppCompatActivity {
     // Lista para almacenar usuarios
     public static ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
+    private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "UserPrefs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Inicializar SharedPreferences
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
         // Inicializar vistas
         etEmailLogin = findViewById(R.id.etEmailLogin);
         etPasswordLogin = findViewById(R.id.etPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
-        btnGuest = findViewById(R.id.btnGuest); // Nuevo botón
+        btnGuest = findViewById(R.id.btnGuest);
         tvRegisterLink = findViewById(R.id.tvRegisterLink);
 
         // Agregar algunos usuarios de prueba (solo si está vacía)
@@ -86,13 +93,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (usuarioEncontrado != null) {
-            // Login exitoso
+            // Login exitoso - GUARDAR DATOS EN SHAREDPREFERENCES
+            saveUserData(usuarioEncontrado.getEmail(), usuarioEncontrado.getNombre(), false);
+
             Toast.makeText(this, "Welcome " + usuarioEncontrado.getNombre() + "!", Toast.LENGTH_SHORT).show();
 
             // Ir a MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("usuario", usuarioEncontrado.getNombre());
-            intent.putExtra("esInvitado", false); // No es invitado
             startActivity(intent);
             finish(); // Cerrar LoginActivity para que no pueda volver atrás
         } else {
@@ -101,14 +108,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void iniciarComoInvitado() {
-        // Iniciar como usuario invitado
+        // Iniciar como usuario invitado - GUARDAR DATOS EN SHAREDPREFERENCES
+        saveUserData("guest@rupevault.com", "Guest User", true);
+
         Toast.makeText(this, "Continuing as guest", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.putExtra("usuario", "Guest");
-        intent.putExtra("esInvitado", true); // Es invitado
         startActivity(intent);
         finish(); // Cerrar LoginActivity
+    }
+
+    private void saveUserData(String email, String name, boolean isGuest) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", email);
+        editor.putString("name", name);
+        editor.putBoolean("isLoggedIn", true);
+        editor.putBoolean("isGuest", isGuest);
+        editor.apply();
+
+        // Verificar que se guardó correctamente
+        Toast.makeText(this, "Datos guardados: " + name, Toast.LENGTH_SHORT).show();
     }
 
     private void irARegister() {

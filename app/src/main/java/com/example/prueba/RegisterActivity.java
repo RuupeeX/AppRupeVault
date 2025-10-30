@@ -1,6 +1,7 @@
 package com.example.prueba;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -18,6 +19,9 @@ public class RegisterActivity extends AppCompatActivity {
     private MaterialButton btnRegister;
     private TextView tvLoginLink;
 
+    private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "UserPrefs";
+
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
@@ -25,6 +29,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        // Inicializar SharedPreferences
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         // Inicializar vistas
         etNombreRegister = findViewById(R.id.etNombreRegister);
@@ -50,6 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
                 irALogin();
             }
         });
+
+        // Rellenar campos para testing (opcional)
+        etNombreRegister.setText("Test User");
+        etEmailRegister.setText("test@rupevault.com");
+        etPasswordRegister.setText("123456");
+        etRepeatPasswordRegister.setText("123456");
+        cbTerms.setChecked(true);
     }
 
     private void registrarUsuario() {
@@ -94,10 +108,24 @@ public class RegisterActivity extends AppCompatActivity {
         Usuario nuevoUsuario = new Usuario(nombre, email, password);
         LoginActivity.listaUsuarios.add(nuevoUsuario);
 
-        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+        // GUARDAR DATOS EN SHAREDPREFERENCES Y HACER LOGIN AUTOMÁTICO
+        saveUserDataAndLogin(email, nombre);
 
-        // Ir al login después del registro
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        Toast.makeText(this, "Account created successfully! Welcome " + nombre, Toast.LENGTH_SHORT).show();
+    }
+
+    private void saveUserDataAndLogin(String email, String name) {
+        // Guardar datos en SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", email);
+        editor.putString("name", name);
+        editor.putBoolean("isLoggedIn", true);
+        editor.putBoolean("isGuest", false); // No es invitado, es usuario registrado
+        editor.apply();
+
+        // Ir directamente al MainActivity (login automático)
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }

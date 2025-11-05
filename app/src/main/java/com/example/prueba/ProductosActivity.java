@@ -49,7 +49,6 @@ public class ProductosActivity extends AppCompatActivity {
         iconoVolver = findViewById(R.id.iconoVolver);
         layoutBuscar = findViewById(R.id.layoutBuscar);
         editTextBuscar = findViewById(R.id.editTextBuscar);
-        btnCancelarBuscar = findViewById(R.id.btnCancelarBuscar);
 
         // Configurar título según categoría
         TextView tituloCategoria = findViewById(R.id.tituloCategoria);
@@ -77,13 +76,6 @@ public class ProductosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish(); // Volver a la actividad principal
-            }
-        });
-
-        btnCancelarBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelSearch();
             }
         });
 
@@ -149,8 +141,8 @@ public class ProductosActivity extends AppCompatActivity {
             navigateToUserProfile();
         });
 
-        // Resaltar el botón activo (ninguno en productos, o puedes resaltar search)
-        highlightActiveButton(-1); // -1 para no resaltar ninguno específico
+        // Resaltar el botón de búsqueda cuando estás en productos
+        highlightActiveButton(R.id.searchButton);
     }
 
     private void navigateToHome() {
@@ -203,7 +195,7 @@ public class ProductosActivity extends AppCompatActivity {
                 if (icon != null) {
                     if (id == activeButtonId) {
                         // Botón activo - color púrpura
-                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_purple));
+                        icon.setColorFilter(ContextCompat.getColor(this, R.color.purple));
                     } else {
                         // Botones inactivos - color blanco
                         icon.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
@@ -213,52 +205,57 @@ public class ProductosActivity extends AppCompatActivity {
         }
     }
 
-    // Tus métodos existentes se mantienen igual...
     private void initializeData() {
         datos = new ArrayList<items>();
 
         if ("SNEAKERS".equals(categoriaActual)) {
             // Datos de sneakers - usar el constructor correcto
             datos.add(new items(R.drawable.j1, "Jordan 1 Retro High", "1000€", false, "SNEAKERS",
-                    "Las Jordan 1 Retro High son un icono del baloncesto y la cultura urbana. Diseño clásico con cuero premium y amortiguación Air-Sole."));
+                    "The Jordan 1 Retro High is an icon of basketball and urban culture. It features a classic design with premium leather and Air-Sole cushioning."));
             datos.add(new items(R.drawable.airmax1patta, "Air Max 1 Patta 20th", "100€", false, "SNEAKERS",
-                    "Edición especial colaborativa entre Nike y Patta para celebrar el 20º aniversario. Caracterizada por su diseño en tonos tierra, detalles en gamuza y elementos reflectantes."));
+                    "Special collaborative edition between Nike and Patta celebrating the 20th anniversary. Characterized by earthy tones, suede details, and reflective elements."));
             datos.add(new items(R.drawable.j4red, "Jordan 4 Red Cement", "125€", false, "SNEAKERS",
-                    "Las Air Jordan 4 'Red Cement' presentan un audaz color rojo fuego combinado con el icónico estampado cement. Cuentan con la emblemática malla de malla en los laterales."));
+                    "The Air Jordan 4 ‘Red Cement’ showcases a bold fire-red color combined with the iconic cement print, featuring the classic mesh panels on the sides."));
             datos.add(new items(R.drawable.tnoff, "Air VaporMax Off-White", "480€", false, "SNEAKERS",
-                    "Colaboración exclusiva entre Nike y Off-White de Virgil Abloh. La VaporMax presenta detalles deconstructivos característicos de la marca."));
+                    "Exclusive collaboration between Nike and Virgil Abloh’s Off-White. The VaporMax includes deconstructed details characteristic of the brand."));
             datos.add(new items(R.drawable.airforce1, "Air Force 1 Off-White ICA", "725€", false, "SNEAKERS",
-                    "Edición Museum de Off-White que deconstruye el clásico Air Force 1. Incluye detalles expuestos, costuras visibles y múltiples capas de materiales."));
+                    "The Off-White Museum Edition deconstructs the classic Air Force 1, featuring exposed details, visible stitching, and multiple material layers."));
             datos.add(new items(R.drawable.yeezy350beluga, "Yeezy 350 V2 Beluga", "235€", false, "SNEAKERS",
-                    "El modelo Beluga original que inició la revolución Yeezy. Primeknit transpirable en tonos gris oscuro con la icónica franja naranja."));
+                    "The original Beluga model that started the Yeezy revolution. Breathable Primeknit in dark grey tones with the iconic orange side stripe."));
             datos.add(new items(R.drawable.j11, "Air Jordan 11 Bred", "225€", false, "SNEAKERS",
-                    "Las Jordan 11 'Bred' combinan patent leather negra brillante con detalles en rojo. La suela de goma translúcida y la entresuela de fibra de carbono."));
+                    "The Jordan 11 ‘Bred’ combines shiny black patent leather with red accents. Features a translucent rubber outsole and a carbon-fiber midsole plate."));
             datos.add(new items(R.drawable.j1travisolive, "Jordan 1 Low Travis Olive", "335€", false, "SNEAKERS",
-                    "Colaboración entre Travis Scott y Jordan Brand en tonos oliva y negro. Caracterizada por el reverso del Swoosh, detalles en gamuza premium."));
+                    "Collaboration between Travis Scott and Jordan Brand in olive and black tones. Known for its reversed Swoosh and premium suede details."));
 
         } else if ("CLOTHES".equals(categoriaActual)) {
             // Datos de ropa
             datos.add(new items(R.drawable.boxlogo1, "Hoodie Supreme BoxLogo", "355€", false, "CLOTHES",
-                    "El icónico hoodie de Supreme con el famoso Box Logo bordado en el pecho. Fabricado en algodón French Terry de alta calidad."));
+                    "The iconic Supreme hoodie featuring the famous embroidered Box Logo on the chest. Made from high-quality French Terry cotton."));
             datos.add(new items(R.drawable.denimtearsgrey, "Hoodie Denim Tears", "365€", false, "CLOTHES",
-                    "Diseño conceptual de Tremaine Emory que explora la historia y cultura afroamericana. Estampado algodonero en la parte delantera."));
+                    "Conceptual design by Tremaine Emory exploring African American history and culture. Features the signature cotton wreath graphic on the front."));
             datos.add(new items(R.drawable.boxersupreme, "Boxer Supreme Hanes", "95€", false, "CLOTHES",
-                    "Pack de 3 boxers en colaboración con Hanes. Combinan el comfort clásico de Hanes con el branding de Supreme."));
+                    "Pack of 3 boxers in collaboration with Hanes, combining Hanes' classic comfort with Supreme branding."));
             datos.add(new items(R.drawable.feargodpant, "SweetPants Fear of God", "1000€", false, "CLOTHES",
-                    "Pantalones de chándal de lujo de la colección Essentials de Fear of God. Corte holgado, cintura elástica con cordón."));
+                    "Luxury sweatpants from Fear of God’s Essentials collection. Loose fit with an elastic waistband and drawstring."));
             datos.add(new items(R.drawable.nupsetblack, "North Face 1996 Jacket", "275€", false, "CLOTHES",
-                    "La chaqueta Nuptse de 1996 regresa con su diseño original. Relleno de pluma 700-fill para máximo calor."));
+                    "The iconic 1996 Nuptse jacket returns with its original design. Filled with 700-fill down for maximum warmth."));
+            datos.add(new items(R.drawable.socceroffwhite, "Soccer Jersey OFF-WHITE", "260€", false, "CLOTHES",
+                    "Off-White soccer jersey featuring signature diagonal patterns and conceptual design elements inspired by streetwear aesthetics."));
+            datos.add(new items(R.drawable.yeezygap, "Yeezy Gap Hoodie", "410€", false, "CLOTHES",
+                    "The Yeezy Gap hoodie features a minimalist oversized design, soft heavyweight cotton, and a clean silhouette characteristic of Kanye West’s aesthetic."));
 
         } else if ("ACCESSORIES".equals(categoriaActual)) {
             // Datos de accesorios
             datos.add(new items(R.drawable.rolexdaytona, "Rolex Daytona Two Tone", "14000€", false, "ACCESSORIES",
-                    "Reloj cronógrafo Rolex Cosmograph Daytona en acero Oystersteel y oro amarillo de 18k. Esfera negra con contadores contrastados."));
+                    "Rolex Cosmograph Daytona chronograph in Oystersteel and 18k yellow gold. Black dial with contrasting counters."));
             datos.add(new items(R.drawable.bolsolv, "LV Speedy 30", "1650€", false, "ACCESSORIES",
-                    "El clásico Speedy 30 de Louis Vuitton en canvas Monogram. Diseño cilíndrico con asas de piel, cierre con candado y llave."));
+                    "The classic Louis Vuitton Speedy 30 in Monogram canvas. Cylindrical design with leather handles, padlock closure, and key."));
             datos.add(new items(R.drawable.fiftynine, "New Era Cap MLB", "25€", false, "ACCESSORIES",
-                    "Gorra 59FIFTY de New Era para MLB. Ajuste estructurado, visera rígida y cierre de broche."));
+                    "New Era 59FIFTY MLB cap. Structured fit, stiff visor, and snap closure."));
             datos.add(new items(R.drawable.supremeband, "Supreme Band Bezel", "105€", false, "ACCESSORIES",
-                    "Brazalete de silicona de Supreme con estampado de la marca alrededor de toda la pieza. Ajuste cómodo y elástico."));
+                    "Supreme silicone bracelet with the brand’s print across the entire piece. Comfortable and elastic fit."));
+            datos.add(new items(R.drawable.carteraoffwhite, "Off-White Wallet", "280€", false, "ACCESSORIES",
+                    "Off-White leather wallet featuring minimalist branding and a functional, compact design."));
         }
 
         // Guardar copia de los datos originales
@@ -337,7 +334,6 @@ public class ProductosActivity extends AppCompatActivity {
         intent.putExtra("precio", producto.get_textoContenido());
         intent.putExtra("imagen", producto.get_idImagen());
         intent.putExtra("descripcion", producto.getDescripcion());
-        intent.putExtra("categoria", producto.getCategoria()); // Añadir la categoría
         startActivity(intent);
     }
 
@@ -350,9 +346,15 @@ public class ProductosActivity extends AppCompatActivity {
                     TextView texto_inferior_entrada = view.findViewById(R.id.texto_datos);
                     ImageView imagen_entrada = view.findViewById(R.id.imagen);
 
-                    texto_superior_entrada.setText(entrada.get_textoTitulo());
-                    texto_inferior_entrada.setText(entrada.get_textoContenido());
-                    imagen_entrada.setImageResource(entrada.get_idImagen());
+                    if (texto_superior_entrada != null) {
+                        texto_superior_entrada.setText(entrada.get_textoTitulo());
+                    }
+                    if (texto_inferior_entrada != null) {
+                        texto_inferior_entrada.setText(entrada.get_textoContenido());
+                    }
+                    if (imagen_entrada != null) {
+                        imagen_entrada.setImageResource(entrada.get_idImagen());
+                    }
                 }
             }
         });
@@ -360,8 +362,10 @@ public class ProductosActivity extends AppCompatActivity {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                items product = datos.get(position);
-                abrirDetalleProducto(product);
+                if (position >= 0 && position < datos.size()) {
+                    items product = datos.get(position);
+                    abrirDetalleProducto(product);
+                }
             }
         });
     }
@@ -375,9 +379,15 @@ public class ProductosActivity extends AppCompatActivity {
                     TextView texto_datos = view.findViewById(R.id.texto_datos_grid);
                     ImageView imagen = view.findViewById(R.id.imagen_grid);
 
-                    texto_titulo.setText(entrada.get_textoTitulo());
-                    texto_datos.setText(entrada.get_textoContenido());
-                    imagen.setImageResource(entrada.get_idImagen());
+                    if (texto_titulo != null) {
+                        texto_titulo.setText(entrada.get_textoTitulo());
+                    }
+                    if (texto_datos != null) {
+                        texto_datos.setText(entrada.get_textoContenido());
+                    }
+                    if (imagen != null) {
+                        imagen.setImageResource(entrada.get_idImagen());
+                    }
                 }
             }
         });
@@ -385,8 +395,10 @@ public class ProductosActivity extends AppCompatActivity {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                items product = datos.get(position);
-                abrirDetalleProducto(product);
+                if (position >= 0 && position < datos.size()) {
+                    items product = datos.get(position);
+                    abrirDetalleProducto(product);
+                }
             }
         });
     }

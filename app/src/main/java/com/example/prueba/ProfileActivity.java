@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import com.google.android.material.button.MaterialButton;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -45,8 +47,114 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Configurar listeners
         setupListeners();
+
+        // Configurar la barra de navegación inferior
+        setupBottomNavigation();
     }
 
+    private void setupBottomNavigation() {
+        // Home Button - Volver al MainActivity
+        LinearLayout homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            navigateToHome();
+        });
+
+        // Search Button
+        LinearLayout searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(v -> {
+            showSearchFunctionality();
+        });
+
+        // Like Button - Favoritos
+        LinearLayout likeButton = findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(v -> {
+            showFavorites();
+        });
+
+        // Notifications Button - Notificaciones
+        LinearLayout notificationsButton = findViewById(R.id.notificationsButton);
+        notificationsButton.setOnClickListener(v -> {
+            showNotifications();
+        });
+
+        // User Button - Ya estamos en perfil, puede servir para recargar
+        LinearLayout userButton = findViewById(R.id.userButton);
+        userButton.setOnClickListener(v -> {
+            refreshProfile();
+        });
+
+        // Resaltar el botón de usuario (activo)
+        highlightActiveButton(R.id.userButton);
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    private void showSearchFunctionality() {
+        Toast.makeText(this, "Búsqueda", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProfileActivity.this, SearchActivity.class);
+        // startActivity(intent);
+    }
+
+    private void showFavorites() {
+        Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProfileActivity.this, FavoritesActivity.class);
+        // startActivity(intent);
+    }
+
+    private void showNotifications() {
+        Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
+        // Intent intent = new Intent(ProfileActivity.this, NotificationsActivity.class);
+        // startActivity(intent);
+    }
+
+    private void refreshProfile() {
+        // Recargar datos del perfil
+        setupUserData();
+        Toast.makeText(this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
+    }
+
+    // Método para resaltar el botón activo
+    private void highlightActiveButton(int activeButtonId) {
+        int[] buttonIds = {
+                R.id.homeButton,
+                R.id.searchButton,
+                R.id.likeButton,
+                R.id.notificationsButton,
+                R.id.userButton
+        };
+
+        for (int id : buttonIds) {
+            LinearLayout button = findViewById(id);
+            if (button != null) {
+                // Buscar el ImageView dentro del LinearLayout
+                ImageView icon = null;
+                for (int i = 0; i < button.getChildCount(); i++) {
+                    View child = button.getChildAt(i);
+                    if (child instanceof ImageView) {
+                        icon = (ImageView) child;
+                        break;
+                    }
+                }
+
+                if (icon != null) {
+                    if (id == activeButtonId) {
+                        // Botón activo - color púrpura
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_purple));
+                    } else {
+                        // Botones inactivos - color blanco
+                        icon.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
+                    }
+                }
+            }
+        }
+    }
+
+    // Tus métodos existentes se mantienen igual...
     private void setupUserData() {
         boolean isLoggedIn = sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false);
         boolean isGuest = sharedPreferences.getBoolean(KEY_IS_GUEST, false);

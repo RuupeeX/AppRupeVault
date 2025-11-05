@@ -1,161 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    android:padding="20dp"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical"
+    android:background="#121212">
 
-    <LinearLayout
+    <!-- ScrollView para el contenido del perfil -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp"
+        android:fitsSystemWindows="true">
 
-        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical"
-            android:background="#121212"
-            android:elevation="4dp">
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iconoVolver"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:src="@drawable/back"
-                app:tint="#8A16C1"
-                android:scaleType="fitCenter"
-                android:padding="10dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Volver" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="My Profile"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="#8A16C1" />
-
-            <!-- Espacio para mantener la simetría -->
-            <View
-                android:layout_width="42dp"
-                android:layout_height="42dp" />
-
-        </LinearLayout>
-
-        <!-- Card de perfil -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="30dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="#1E1E1E">
-
+            <!-- Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="30dp"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:background="#121212"
+                android:elevation="4dp">
 
-                <!-- Avatar con iniciales -->
-                <LinearLayout
-                    android:id="@+id/avatarContainer"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/avatar_background"
-                    android:gravity="center"
-                    android:layout_marginBottom="20dp">
+                <ImageView
+                    android:id="@+id/iconoVolver"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/back"
+                    app:tint="#8A16C1"
+                    android:scaleType="fitCenter"
+                    android:padding="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Volver" />
 
-                    <TextView
-                        android:id="@+id/tvAvatarIniciales"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="US"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <!-- Nombre completo -->
                 <TextView
-                    android:id="@+id/tvNombreCompleto"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Usuario"
-                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:text="My Profile"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginBottom="8dp" />
+                    android:gravity="center"
+                    android:textColor="#8A16C1" />
 
-                <!-- Email -->
-                <TextView
-                    android:id="@+id/tvEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="usuario@ejemplo.com"
-                    android:textSize="16sp"
-                    android:textColor="#B3B3B3"
-                    android:layout_marginBottom="30dp" />
-
-                <!-- Tipo de usuario -->
-                <TextView
-                    android:id="@+id/tvTipoUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Registered User"
-                    android:textSize="14sp"
-                    android:textColor="#8A16C1"
-                    android:background="@drawable/user_type_background"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp" />
+                <!-- Espacio para mantener la simetría -->
+                <View
+                    android:layout_width="42dp"
+                    android:layout_height="42dp" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <!-- Card de perfil -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#1E1E1E">
 
-        <!-- Botón Logout -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="40dp"
-            android:text="LOG OUT"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:backgroundTint="#8A16C1"
-            android:textColor="@color/white"
-            android:elevation="4dp"
-            app:cornerRadius="12dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="30dp"
+                    android:gravity="center">
 
-        <!-- Versión Guest -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLoginAsUser"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="40dp"
-            android:text="LOG IN"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:backgroundTint="#8A16C1"
-            android:textColor="@color/white"
-            android:elevation="4dp"
-            app:cornerRadius="12dp"
-            android:visibility="gone" />
+                    <!-- Avatar con iniciales -->
+                    <LinearLayout
+                        android:id="@+id/avatarContainer"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/avatar_background"
+                        android:gravity="center"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            android:id="@+id/tvAvatarIniciales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="US"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                    <!-- Nombre completo -->
+                    <TextView
+                        android:id="@+id/tvNombreCompleto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Usuario"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Email -->
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="usuario@ejemplo.com"
+                        android:textSize="16sp"
+                        android:textColor="#B3B3B3"
+                        android:layout_marginBottom="30dp" />
+
+                    <!-- Tipo de usuario -->
+                    <TextView
+                        android:id="@+id/tvTipoUsuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Registered User"
+                        android:textSize="14sp"
+                        android:textColor="#8A16C1"
+                        android:background="@drawable/user_type_background"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botón Logout -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="40dp"
+                android:text="LOG OUT"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#8A16C1"
+                android:textColor="@color/white"
+                android:elevation="4dp"
+                app:cornerRadius="12dp" />
+
+            <!-- Versión Guest -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLoginAsUser"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="40dp"
+                android:text="LOG IN"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#8A16C1"
+                android:textColor="@color/white"
+                android:elevation="4dp"
+                app:cornerRadius="12dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- BARRA INFERIOR DE NAVEGACIÓN -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:background="#1E1E1E"
+        android:paddingHorizontal="17dp"
+        android:elevation="8dp">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_casa_96"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <!-- Search -->
+        <LinearLayout
+            android:id="@+id/searchButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/bolsa"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <!-- Like -->
+        <LinearLayout
+            android:id="@+id/likeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_me_gusta_96"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <!-- Notifications -->
+        <LinearLayout
+            android:id="@+id/notificationsButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_recordatorios_de_citas_96"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <!-- User -->
+        <LinearLayout
+            android:id="@+id/userButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icons8_usuario_96"
+                app:tint="#8A16C1" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

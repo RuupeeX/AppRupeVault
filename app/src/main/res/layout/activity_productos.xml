@@ -77,37 +77,49 @@
 
     </LinearLayout>
 
-    <!-- El resto del layout se mantiene igual -->
+    <!-- BARRA DE BÚSQUEDA MEJORADA -->
     <LinearLayout
         android:id="@+id/layoutBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp"
-        android:background="#121212"
-        android:elevation="2dp"
+        android:padding="16dp"
+        android:background="#1E1E1E"
+        android:elevation="4dp"
         android:visibility="gone">
 
-        <EditText
-            android:id="@+id/editTextBuscar"
+        <!-- Contenedor del campo de búsqueda con icono -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Buscar..."
-            android:padding="12dp"
-            android:background="@drawable/edittext_background"
-            android:imeOptions="actionSearch"
-            android:singleLine="true" />
+            android:orientation="horizontal"
+            android:background="@drawable/search_background"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp">
 
-        <Button
-            android:id="@+id/btnCancelarBuscar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:layout_marginStart="8dp"
-            android:padding="12dp"
-            android:background="#0C3F66"
-            android:textColor="@android:color/white" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/lupa"
+                app:tint="#8A16C1"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/editTextBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Buscar..."
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:padding="0dp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -123,7 +135,7 @@
         android:clipToPadding="false"
         android:visibility="visible" />
 
-    <!-- GridView ajustado para CardView -->
+    <!-- GridView CardView -->
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
@@ -187,7 +199,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/lupa"
+                android:src="@drawable/bolsa"
                 app:tint="@color/white" />
 
         </LinearLayout>

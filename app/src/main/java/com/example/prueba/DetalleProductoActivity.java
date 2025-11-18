@@ -1,5 +1,6 @@
 package com.example.prueba;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,16 @@ public class DetalleProductoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        boolean isGuest = sharedPreferences.getBoolean("isGuest", false);
+
+        if (isGuest) {
+            Toast.makeText(this, "Guest users cannot access product details. Please log in.", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
         setContentView(R.layout.detalle_producto);
 
         // Enlazar vistas
@@ -40,7 +51,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             String precio = extras.getString("precio");
             int imagen = extras.getInt("imagen");
             String descripcion = extras.getString("descripcion");
-            categoriaProducto = extras.getString("categoria"); // Obtener la categoría
+            categoriaProducto = extras.getString("categoria");
 
             // Mostrar datos
             tituloDetalle.setText(titulo);
